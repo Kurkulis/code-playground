@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gilužio Rivjera</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__content container">
+        <img class="logo" src="assets/logo.png" alt="Gilužio Rivjera" />
+        <h1>Butai prie Gilužio ežero kranto</h1>
+        <p>Registruokitės ir sužinokite pirmieji apie naujus butus</p>
+        <button id="open-modal" class="btn btn-primary">
+          Sužinoti daugiau
+        </button>
+      </div>
+    </header>
+
+    <!-- hidden reikia padaryt kad nesimatytu -->
+    <div id="register-modal" class="modal">
+      <div class="modal__backdrop" data-dismiss="modal"></div>
+
+      <div class="modal__dialog" role="document">
+        <button class="modal__close" data-dismiss="modal">&times;</button>
+
+        <h2 id="modal-title">„Gilužio Rivjera“</h2>
+        <p id="modal-desc" class="muted">
+          Užsiregistruokite ir pirmieji sužinokite apie projektą.
+        </p>
+
+        <form id="register-form" class="form" novalidate>
+          <label
+            >Vardas *
+            <input type="text" name="name" required />
+          </label>
+
+          <label
+            >Telefonas *
+            <input
+              type="tel"
+              name="phone"
+              inputmode="tel"
+              autocomplete="tel"
+              required
+            />
+          </label>
+
+          <label
+            >El. paštas *
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+
+          <fieldset>
+            <legend>Jus domina:</legend>
+            <label
+              ><input type="checkbox" name="rooms" value="1" /> 1 kamb.</label
+            >
+            <label
+              ><input type="checkbox" name="rooms" value="2" /> 2 kamb.</label
+            >
+            <label
+              ><input type="checkbox" name="rooms" value="3" /> 3 kamb.</label
+            >
+            <label
+              ><input type="checkbox" name="rooms" value="4" /> 4 kamb.</label
+            >
+          </fieldset>
+
+          <button type="submit" class="btn btn-primary">Registruotis</button>
+        </form>
+
+        <div class="agent">
+          <strong>Jurgita Pavardė</strong>
+          <div class="muted">Pardavimų vadovė</div>
+          <div class="contacts">
+            <a href="tel:+37065944444">+370 659 44444</a> ·
+            <a href="mailto:pardavimai@giluziorivjera.lt"
+              >pardavimai@giluziorivjera.lt</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="scripts/modal.js" defer></script>
+  </body>
+</html>
