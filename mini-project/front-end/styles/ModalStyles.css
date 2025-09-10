@@ -1,0 +1,348 @@
+/* Modal Styles */
+[hidden] {
+  display: none !important;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  /* NEVER scroll the page while modal is open */
+  overflow: hidden;
+  /* A tiny safe-area padding to avoid notches cutting content */
+  padding: max(6px, env(safe-area-inset-top))
+    max(6px, env(safe-area-inset-right)) max(6px, env(safe-area-inset-bottom))
+    max(6px, env(safe-area-inset-left));
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(171, 160, 154, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.modal__dialog {
+  position: relative;
+  width: min(700px, 92vw);
+  background: #f5e6d3;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  padding: 40px 155px;
+  /* We will SCALE this box to guarantee it fits; no internal scrollbars */
+  max-height: none;
+  overflow: visible;
+  font-family: "Ek Mukta", sans-serif;
+  text-align: center;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+
+  /* Key bit: scale-to-fit controlled by JS via CSS var */
+  transform: scale(var(--modal-scale, 1));
+  transform-origin: top center;
+  will-change: transform;
+}
+
+@keyframes modalOpen {
+  from {
+    transform: scale(calc(0.8 * var(--modal-scale, 1))) translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(var(--modal-scale, 1)) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes modalClose {
+  from {
+    transform: scale(var(--modal-scale, 1)) translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: scale(calc(0.8 * var(--modal-scale, 1))) translateY(20px);
+    opacity: 0;
+  }
+}
+
+.modal__close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  line-height: 1;
+  border: 0;
+  background: #48271d;
+  cursor: pointer;
+  color: #cacaca;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+}
+
+.modal__logo {
+  margin: 0 auto 18px;
+  width: 110px;
+  text-align: center;
+}
+.modal__intro {
+  margin: 0 0 26px;
+  color: #5b3a2a;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+.modal__intro strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.modal__intro strong span {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.modal__logo img {
+  width: 100%;
+  height: auto;
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+  margin: 25px 0;
+}
+
+label {
+  display: block;
+  text-align: left;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+  padding: 14px 16px;
+  background: #f5e6d3;
+  font-family: "Ek Mukta", sans-serif;
+  font-size: 15px;
+  color: #333;
+  border: none;
+  border-bottom: 1px solid #5c4033;
+  outline: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+  outline: none;
+  border-bottom: 1px solid #5c4033;
+  box-shadow: none;
+}
+
+input::placeholder {
+  color: #8b7355;
+  opacity: 0.85;
+}
+
+.room-options {
+  text-align: left;
+  margin-top: 8px;
+}
+
+.room-options p {
+  font-weight: 400;
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: #5b3a2a;
+}
+
+.checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.checkboxes label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: #5b3a2a;
+  background-color: transparent;
+  font-weight: 300;
+}
+
+.btn-primary {
+  margin-top: 25px;
+  background-color: #5b3a2a;
+  color: white;
+  text-transform: uppercase;
+  width: fit-content;
+  justify-self: center;
+  padding: 14px 30px;
+  min-width: 160px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: #4a2f20;
+}
+
+.waves {
+  margin: 30px 0 10px;
+  text-align: center;
+}
+
+.waves img {
+  max-width: 70px;
+  opacity: 0.6;
+}
+
+.agent {
+  text-align: center;
+}
+
+.agent__name {
+  font-weight: 600;
+  color: #48271d;
+  display: block;
+  font-size: 22px;
+}
+
+.agent__title {
+  color: #48271d;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 4px 0 8px;
+}
+
+.contacts {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.contacts a {
+  color: #5b3a2a;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.contacts a:hover {
+  text-decoration: underline;
+}
+
+.phone-icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url("../assets/icons/device-mobile.png") no-repeat center/contain;
+}
+
+.email-icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url("../assets/icons/envelope.png") no-repeat center/contain;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #5b3a2a;
+  background-color: #f5e6d3;
+}
+
+/* Custom checkbox su smėlio fonu (#f5e6d3) */
+.checkboxes input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid #5b3a2a; /* rėmelis – kaip makete */
+  background-color: #f5e6d3; /* vidus VISADA smėlinis */
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+}
+
+/* „Varnelė“ – piešiama pseudo-elementu, kad spalva liktų #5b3a2a */
+.checkboxes input[type="checkbox"]::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  transition: transform 120ms ease-in-out;
+  clip-path: polygon(
+    14% 44%,
+    0 65%,
+    50% 100%,
+    100% 15%,
+    80% 0,
+    43% 62%
+  ); /* varnelės forma */
+  background-color: #5b3a2a;
+}
+
+/* Pažymėta būsena – parodome varnelę */
+.checkboxes input[type="checkbox"]:checked::after {
+  transform: scale(1);
+}
+
+/* Fokusas klaviatūra – subtilus akcentas */
+.checkboxes input[type="checkbox"]:focus-visible {
+  outline: 2px solid #5b3a2a;
+  outline-offset: 2px;
+}
+
+/* Mobile modal specific adjustments: keep center alignment, no scroll */
+@media (max-width: 767px) {
+  .modal {
+    padding: 6px;
+    align-items: center;
+  }
+
+  .modal__dialog {
+    margin: 0;
+  }
+}
+
+/* Landscape mobile adjustments */
+@media (max-width: 767px) and (orientation: landscape) {
+  .modal {
+    align-items: center;
+  }
+}
+
+.submit-state {
+  margin-top: 20px;
+  animation: fadeInUp 0.25s ease;
+  min-height: 200px; /* užtikriname minimalų aukštį */
+  display: flex;
+  align-items: center;
+}
+.submit-state__box {
+  border: 1px solid #5b3a2a;
+  border-radius: 8px;
+  padding: 26px 20px;
+  background: #f5e6d3;
+  width: 100%;
+  text-align: center;
+}
+.submit-state .btn {
+  margin-top: 16px;
+}

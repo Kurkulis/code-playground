@@ -1,84 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gilužio Rivjera</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ek+Mukta:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/ModalStyles.css" />
+    <link rel="stylesheet" href="styles/responsiveness.css" />
   </head>
   <body>
     <header class="hero">
       <div class="hero__content container">
-        <img class="logo" src="assets/logo.png" alt="Gilužio Rivjera" />
-        <h1>Butai prie Gilužio ežero kranto</h1>
-        <p>Registruokitės ir sužinokite pirmieji apie naujus butus</p>
-        <button id="open-modal" class="btn btn-primary">
-          Sužinoti daugiau
-        </button>
+        <div class="hero__brand">
+          <img class="logo" src="assets/logo_full.png" alt="Gilužio Rivjera" />
+        </div>
+        <div class="hero__bottom">
+          <h1>BUTAI PRIE GILUŽIO EŽERO KRANTO</h1>
+          <p>Registruokitės ir sužinokite pirmieji apie naujus butus</p>
+          <button id="open-modal" class="btn btn-hero">SUŽINOTI DAUGIAU</button>
+        </div>
       </div>
     </header>
 
-    <!-- hidden reikia padaryt kad nesimatytu -->
-    <div id="register-modal" class="modal">
+    <div id="register-modal" class="modal" hidden>
       <div class="modal__backdrop" data-dismiss="modal"></div>
 
-      <div class="modal__dialog" role="document">
+      <div class="modal__dialog" role="dialog">
         <button class="modal__close" data-dismiss="modal">&times;</button>
 
-        <h2 id="modal-title">„Gilužio Rivjera“</h2>
-        <p id="modal-desc" class="muted">
-          Užsiregistruokite ir pirmieji sužinokite apie projektą.
+        <div class="modal__logo">
+          <img src="assets/logo.png" alt="Gilužio Rivjera" />
+        </div>
+
+        <p class="modal__intro">
+          Užsiregistruokite ir jums pirmiesiems papasakosime apie
+          <strong>„<span>G</span>ILUŽIO RIVJERA“</strong>
         </p>
 
         <form id="register-form" class="form" novalidate>
-          <label
-            >Vardas *
-            <input type="text" name="name" required />
+          <label>
+            <input type="text" name="name" placeholder="Vardas *" required />
           </label>
 
-          <label
-            >Telefonas *
+          <label>
             <input
               type="tel"
               name="phone"
               inputmode="tel"
               autocomplete="tel"
+              placeholder="Telefonas *"
               required
             />
           </label>
 
-          <label
-            >El. paštas *
-            <input type="email" name="email" autocomplete="email" required />
+          <label>
+            <input
+              type="email"
+              name="email"
+              autocomplete="email"
+              placeholder="El. paštas *"
+              required
+            />
           </label>
 
-          <fieldset>
-            <legend>Jus domina:</legend>
-            <label
-              ><input type="checkbox" name="rooms" value="1" /> 1 kamb.</label
-            >
-            <label
-              ><input type="checkbox" name="rooms" value="2" /> 2 kamb.</label
-            >
-            <label
-              ><input type="checkbox" name="rooms" value="3" /> 3 kamb.</label
-            >
-            <label
-              ><input type="checkbox" name="rooms" value="4" /> 4 kamb.</label
-            >
-          </fieldset>
+          <div class="room-options">
+            <p>Jus domina:</p>
+            <div class="checkboxes">
+              <label
+                ><input type="checkbox" name="rooms[]" value="1" /> 1
+                kamb.</label
+              >
+              <label
+                ><input type="checkbox" name="rooms[]" value="2" checked /> 2
+                kamb.</label
+              >
+              <label
+                ><input type="checkbox" name="rooms[]" value="3" /> 3
+                kamb.</label
+              >
+              <label
+                ><input type="checkbox" name="rooms[]" value="4" /> 4
+                kamb.</label
+              >
+            </div>
+          </div>
 
-          <button type="submit" class="btn btn-primary">Registruotis</button>
+          <button type="submit" class="btn btn-primary">REGISTRUOTIS</button>
         </form>
 
+        <div class="waves">
+          <img src="assets/bangeles.png" alt="bangelės" />
+        </div>
+
         <div class="agent">
-          <strong>Jurgita Pavardė</strong>
-          <div class="muted">Pardavimų vadovė</div>
+          <div class="agent__name">Jurgita Pavardė</div>
+          <div class="agent__title">Pardavimų vadovė</div>
           <div class="contacts">
-            <a href="tel:+37065944444">+370 659 44444</a> ·
-            <a href="mailto:pardavimai@giluziorivjera.lt"
-              >pardavimai@giluziorivjera.lt</a
-            >
+            <a href="tel:+37065944444">
+              <span class="phone-icon"></span>+370 659 444 44
+            </a>
+            <a href="mailto:pardavimai@giluziorivjera.lt">
+              <span class="email-icon"></span>pardavimai@giluziorivjera.lt
+            </a>
+          </div>
+        </div>
+        <div id="submit-state" class="submit-state" aria-live="polite" hidden>
+          <div class="submit-state__box">
+            <p class="submit-msg" data-state="success">
+              Ačiū, Jūsų užklausą gavome. Netrukus su Jumis susisieksime.
+            </p>
+            <p class="submit-msg" data-state="error" hidden>
+              Nepavyko išsiųsti. Patikrinkite ryšį ir bandykite dar kartą.
+            </p>
           </div>
         </div>
       </div>
